@@ -1,34 +1,54 @@
 import React, { Component } from 'react';
 import * as firebase from 'firebase';
+import TextField from '@material-ui/core/TextField';
+import { AppBar } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 class Auth extends Component {
 
   constructor() {
     super();
 
-    this.state = {
-      speed: 10
-    };
+    const txtEmail = document.getElementById('txtEmail');
+    const txtPassword = document.getElementById('txtPassword');
+    const btnLogin = document.getElementById('btnLogin');
 
-  }
+    // TO-DO SIGN IN (FIREBASE)
 
-  componentDidMount() {
-    const rootRef = firebase.database().ref();
-    const speedRef = rootRef.child('speed');
+    // TO-DO SIGN-UP (FIREBASE)
+
+    // TO-DO SIGN-OUT (FIREBASE)
     
-    speedRef.on('value', snap => {
-      this.setState({
-        speed: snap.val()
-      });
-
-    });
-
-  }
+  } //Constructor
 
   render() {
     return (
-      <div className = 'Auth'>
-        <h1>{this.state.speed}</h1>
+      <div>
+        <AppBar
+          title = "Login"
+          />
+        <br/>
+          <TextField
+            id = "txtEmail"
+            type = "email"
+            placeholder = "Email"
+            onChange = {(event,newValue) => this.setState({txtEmail:newValue})}
+            />
+          <br/>
+          <TextField
+            id = "txtPassword"
+            type = "password"
+            placeholder = "Password"
+            onChange = {(event,newValue) => this.setState({txtPassword:newValue})}
+            />
+          <br/>
+
+          <br/> 
+
+          <Button id= "btnLogin" variant="contained" color="primary" className="btn btn-action">
+            Login
+          </Button>
+
       </div>
     );
   }
